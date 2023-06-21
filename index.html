@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Кликните по "изображению" мыши и перемещайте её с помощью клавиш со стрелками.</p>
+  <p>You can click on a mouse and move this by arrow keys.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    mouse.tabIndex = 0;
+
+    mouse.onfocus = () => moveOn();
+
+    function moveOn() {
+      mouse.style.position = 'fixed';
+      mouse.onkeydown = function (event) {
+        let coords = mouse.getBoundingClientRect();
+
+        switch (event.key) {
+          case 'ArrowUp':
+
+            mouse.style.top = coords.y - mouse.clientHeight + 'px';
+            break;
+
+          case 'ArrowDown':
+
+            mouse.style.top = coords.y + mouse.clientHeight + 'px';
+            break;
+
+          case 'ArrowRight':
+            
+            mouse.style.left = coords.x + mouse.clientWidth + 'px';
+            break;
+
+          case 'ArrowLeft':
+            
+            mouse.style.left = coords.x - mouse.clientWidth + 'px';
+            break;
+        }
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
